@@ -1,8 +1,16 @@
-import { apiFetch } from "@/lib/api";
 import { Product } from "@/types/product";
 import Link from "next/link";
 const RisingProducts = async () => {
-  const products: Product[] = await apiFetch("/products");
+  const response = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
+    { next: { revalidate: 60 } },
+  );
+
+  if (!response.ok) {
+    throw new Error("দাম বেড়েছে এমন পণ্য লোড করা যায়নি।");
+  }
+
+  const products: Product[] = await response.json();
 
   const risingProducts = products
     .filter((product) => product.change.dir === "up")

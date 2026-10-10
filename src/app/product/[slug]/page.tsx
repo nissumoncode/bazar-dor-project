@@ -1,6 +1,5 @@
 import { Product } from "@/types/product";
 import { notFound } from "next/navigation";
-import { apiFetch } from "@/lib/api";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -12,7 +11,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
   let products: Product[];
 
   try {
-    products = await apiFetch("/products");
+    const response = await fetch(
+      "https://openapi.programming-hero.com/api/bazardor/products",
+      { next: { revalidate: 60 } },
+    );
+
+    const data = await response.json();
+    products = data;
   } catch {
     throw new Error("পণ্যের তথ্য লোড করা যায়নি");
   }

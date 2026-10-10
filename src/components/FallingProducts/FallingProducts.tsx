@@ -1,9 +1,14 @@
 import { Product } from "@/types/product";
 import Link from "next/link";
-import { apiFetch } from "@/lib/api";
 
 const FallingProducts = async () => {
-  const products: Product[] = await apiFetch("/products");
+  const response = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
+    { next: { revalidate: 60 } },
+  );
+
+  const data = await response.json();
+  const products: Product[] = data;
 
   const fallingProducts = products
     .filter((product) => product.change.dir === "down")

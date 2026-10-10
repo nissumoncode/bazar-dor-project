@@ -1,9 +1,14 @@
 import { Product } from "@/types/product";
 import Link from "next/link";
-import { apiFetch } from "@/lib/api";
 
 const AllProducts = async () => {
-  const products: Product[] = await apiFetch("/products");
+  const response = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
+    { next: { revalidate: 60 } },
+  );
+
+  const data = await response.json();
+  const products: Product[] = data;
   return (
     <section id="সব-পণ্য" className="max-w-7xl mx-auto px-4 py-10">
       <h2 className="text-2xl md:text-3xl font-bold mb-6">🛒 সব পণ্য</h2>

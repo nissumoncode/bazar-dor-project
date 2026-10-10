@@ -1,6 +1,5 @@
 import { Product } from "@/types/product";
 import { notFound } from "next/navigation";
-import { apiFetch } from "@/lib/api";
 
 interface Category {
   id: string;
@@ -16,17 +15,21 @@ interface CategoryPageProps {
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
 
-  let categories: Category[];
-  let products: Product[];
+  const [categoriesResponse, productsResponse] = await Promise.all([
+    fetch("https://openapi.programming-hero.com/api/bazardor/categories", {
+      next: { revalidate: 60 },
+    }),
+    fetch(
+      `https://openapi.programming-hero.com/api/bazardor/products?category=${encodeURIComponent(slug)}`,
+      { next: { revalidate: 60 } },
+    ),
+  ]);
 
-  try {
-    [categories, products] = await Promise.all([
-      apiFetch("/categories"),
-      apiFetch(`/products?category=${encodeURIComponent(slug)}`),
-    ]);
-  } catch {
-    throw new Error("ডেটা লোড করা যায়নি");
-  }
+  const categoriesData = await categoriesResponse.json();
+  const productsData = await productsResponse.json();
+
+  const categories: Category[] = categoriesData;
+  const products: Product[] = productsData;
 
   const category = categories.find((item) => item.slug === slug);
 

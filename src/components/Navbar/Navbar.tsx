@@ -1,18 +1,25 @@
-import { apiFetch } from "@/lib/api";
-
 import Image from "next/image";
 import Link from "next/link";
-const today = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
+
+const today = new Date().toLocaleDateString("bn-BD", {
+  dateStyle: "full",
+});
+
 interface Category {
   id: string;
   slug: string;
   nameBn: string;
   icon: string;
 }
-const Navbar = async () => {
-  const categories: Category[] = await apiFetch("/categories");
 
-  console.log(categories);
+const Navbar = async () => {
+  const response = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/categories",
+    { next: { revalidate: 60 } },
+  );
+
+  const data = await response.json();
+  const categories: Category[] = data;
 
   return (
     <header className="bg-blue-100">
