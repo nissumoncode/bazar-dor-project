@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import PriceTicker from "@/components/PriceTicker";
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className="min-h-screen flex flex-col">
+        <Toaster position="top-right" />
         <Navbar />
         <PriceTicker />
         <main className="bg-blue-100 flex-1">{children}</main>

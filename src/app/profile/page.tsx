@@ -1,16 +1,8 @@
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
+import { requireAuth } from "@/lib/require-auth";
 import ProfileForm from "@/components/Profile/ProfileForm";
 
 const ProfilePage = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session?.user) {
-    redirect("/signin");
-  }
+  const session = await requireAuth("/profile");
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">

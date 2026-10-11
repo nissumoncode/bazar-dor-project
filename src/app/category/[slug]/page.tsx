@@ -1,5 +1,7 @@
 import { Product } from "@/types/product";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { requireAuth } from "@/lib/require-auth";
 
 interface Category {
   id: string;
@@ -14,6 +16,8 @@ interface CategoryPageProps {
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
+
+  await requireAuth(`/category/${slug}`);
 
   const [categoriesResponse, productsResponse] = await Promise.all([
     fetch("https://openapi.programming-hero.com/api/bazardor/categories", {
@@ -50,9 +54,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {products.map((product) => (
-            <div
+            <Link
               key={product.id}
-              className="card bg-base-100 border border-base-300 rounded-2xl shadow-sm"
+              href={`/product/${product.slug}`}
+              className="card bg-base-100 border border-base-300 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="card-body">
                 <h2 className="card-title">
@@ -82,7 +87,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   {Math.abs(product.change.pct)}%
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

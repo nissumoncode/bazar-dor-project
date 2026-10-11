@@ -1,5 +1,6 @@
 import { Product } from "@/types/product";
 import { notFound } from "next/navigation";
+import { requireAuth } from "@/lib/require-auth";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -7,6 +8,8 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
+
+  await requireAuth(`/product/${slug}`);
 
   let products: Product[];
 
