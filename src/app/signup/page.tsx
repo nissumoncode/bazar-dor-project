@@ -151,6 +151,22 @@ const SignupPage = () => {
             {" "}
             <button
               type="button"
+              onClick={async () => {
+                try {
+                  const { error } = await authClient.signIn.social({
+                    provider: "google",
+                    callbackURL: "/",
+                  });
+
+                  if (error) {
+                    toast.error(
+                      error.message || "Google দিয়ে চালিয়ে যাওয়া যায়নি",
+                    );
+                  }
+                } catch {
+                  toast.error("Google দিয়ে সাইন ইন করা যায়নি");
+                }
+              }}
               className="btn btn-outline min-h-14 w-full gap-3 rounded-xl border-base-300 px-4 py-3 text-sm normal-case sm:text-base"
             >
               {" "}
@@ -158,6 +174,22 @@ const SignupPage = () => {
             </button>{" "}
             <button
               type="button"
+              onClick={async () => {
+                try {
+                  const { error } = await authClient.signIn.social({
+                    provider: "github",
+                    callbackURL: "/",
+                  });
+
+                  if (error) {
+                    toast.error(
+                      error.message || "GitHub দিয়ে চালিয়ে যাওয়া যায়নি",
+                    );
+                  }
+                } catch {
+                  toast.error("GitHub দিয়ে সাইন ইন করা যায়নি");
+                }
+              }}
               className="btn btn-outline min-h-14 w-full gap-3 rounded-xl border-base-300 px-4 py-3 text-sm normal-case sm:text-base"
             >
               {" "}
