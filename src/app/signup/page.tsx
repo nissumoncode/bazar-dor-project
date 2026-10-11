@@ -42,6 +42,7 @@ const SignupPage = () => {
 
       toast.success("অ্যাকাউন্ট তৈরি হয়েছে!");
       router.push("/");
+      router.refresh();
     } catch {
       toast.error("সমস্যা হয়েছে। আবার চেষ্টা করুন।");
     } finally {

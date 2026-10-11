@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import ProfileDropdown from "./ProfileDropdown";
 
 const today = new Date().toLocaleDateString("bn-BD", {
   dateStyle: "full",
@@ -13,6 +16,11 @@ interface Category {
 }
 
 const Navbar = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  console.log("User image:", session?.user?.image);
   const response = await fetch(
     "https://openapi.programming-hero.com/api/bazardor/categories",
     { next: { revalidate: 60 } },
@@ -38,13 +46,23 @@ const Navbar = async () => {
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-2">
-            <Link href="/signin" className="btn btn-ghost">
-              সাইন ইন
-            </Link>
+            {session?.user ? (
+              <ProfileDropdown
+                name={session.user.name || "ব্যবহারকারী"}
+                email={session.user.email}
+                image={session.user.image}
+              />
+            ) : (
+              <>
+                <Link href="/signin" className="btn btn-ghost">
+                  সাইন ইন
+                </Link>
 
-            <Link href="/signup" className="btn btn-primary">
-              সাইন আপ
-            </Link>
+                <Link href="/signup" className="btn btn-primary">
+                  সাইন আপ
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
