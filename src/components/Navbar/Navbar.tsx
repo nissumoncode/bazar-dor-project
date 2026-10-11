@@ -38,8 +38,13 @@ const Navbar = async () => {
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-2">
-            <button className="btn btn-ghost">সাইন ইন</button>
-            <button className="btn btn-primary">সাইন আপ</button>
+            <Link href="/signin" className="btn btn-ghost">
+              সাইন ইন
+            </Link>
+
+            <Link href="/signup" className="btn btn-primary">
+              সাইন আপ
+            </Link>
           </div>
         </div>
       </div>
