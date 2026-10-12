@@ -19,6 +19,8 @@ const SignupPage = () => {
       : "/";
 
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,6 +64,56 @@ const SignupPage = () => {
 
   const inputClassName =
     "block h-14 w-full appearance-none rounded-xl border border-slate-300 bg-white px-4 text-base text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100";
+
+  const renderPasswordToggle = (
+    visible: boolean,
+    onToggle: () => void,
+    label: string,
+  ) => (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label={visible ? `${label} লুকান` : `${label} দেখুন`}
+      aria-pressed={visible}
+      className="absolute inset-y-0 right-0 flex w-12 items-center justify-center rounded-r-xl text-slate-500 transition-colors hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+    >
+      {visible ? (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 3l18 18" />
+          <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
+          <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c5.5 0 9 7 9 7a15.5 15.5 0 0 1-3.1 3.9" />
+          <path d="M6.2 6.2C3.9 7.8 3 12 3 12s3.5 7 9 7a9.8 9.8 0 0 0 4.1-.9" />
+        </svg>
+      )}
+    </button>
+  );
 
   return (
     <section className="flex min-h-screen flex-col items-center bg-[#F5F8FC] px-4 py-14 sm:py-20">
@@ -122,15 +174,23 @@ const SignupPage = () => {
                 পাসওয়ার্ড
               </label>
 
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="কমপক্ষে ৮ অক্ষর"
-                minLength={8}
-                className={inputClassName}
-                required
-              />
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="কমপক্ষে ৮ অক্ষর"
+                  minLength={8}
+                  className={`${inputClassName} pr-12`}
+                  required
+                />
+
+                {renderPasswordToggle(
+                  showPassword,
+                  () => setShowPassword((previous) => !previous),
+                  "পাসওয়ার্ড",
+                )}
+              </div>
             </div>
 
             <div>
@@ -141,15 +201,23 @@ const SignupPage = () => {
                 পাসওয়ার্ড নিশ্চিত করুন
               </label>
 
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder="আবার লিখুন"
-                minLength={8}
-                className={inputClassName}
-                required
-              />
+              <div className="relative">
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="আবার লিখুন"
+                  minLength={8}
+                  className={`${inputClassName} pr-12`}
+                  required
+                />
+
+                {renderPasswordToggle(
+                  showConfirmPassword,
+                  () => setShowConfirmPassword((previous) => !previous),
+                  "নিশ্চিত পাসওয়ার্ড",
+                )}
+              </div>
             </div>
 
             <button
