@@ -1,47 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# Bazar Dor — বাজার দর
+
+Bazar Dor is a Bengali-language product price tracking web application that helps users explore daily essential product prices, compare market prices, and understand price changes over time.
+
+## Features
+
+- **Product Listings:** Browse essential products with Bengali names, current prices, and units.
+- **Price Trends:** View products with rising and falling prices.
+- **Category Browsing:** Explore products by category and sort them by price.
+- **Product Details:** View minimum, maximum, average, and market-wise prices.
+- **Authentication:** Sign up and sign in with email and password.
+- **GitHub Login:** Sign in using GitHub OAuth.
+- **Protected Routes:** Restrict product, category, and profile pages to authenticated users.
+- **Profile Management:** Update your profile name and sign out.
+- **Responsive UI:** Browse on mobile, tablet, and desktop.
+- **Loading and Error States:** Display loading skeletons and a friendly 404 page.
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- Better Auth
+- MongoDB
+- React Hot Toast
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js
+- npm
+- MongoDB connection and required authentication environment variables
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    git clone https://github.com/nissumoncode/bazar-dor-project.git
+    cd bazar-dor-project
 
-## Learn More
+Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+    npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create a `.env` file in the project root and configure the required environment variables.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Start the development server:
 
-## Deploy on Vercel
+    npm run dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open http://localhost:3000 in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Production Build
 
+    npm run build
+    npm run start
 
+## Deployment
 
+The application is deployed on Vercel.
 
+## Repository
 
-
- {" "}
-          {/* animate-[ticker_30s_linear_infinite]*/}
-
-
-
+https://github.com/nissumoncode/bazar-dor-project
