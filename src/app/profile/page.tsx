@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { requireAuth } from "@/lib/require-auth";
 import ProfileForm from "@/components/Profile/ProfileForm";
 
@@ -18,9 +19,13 @@ const ProfilePage = async () => {
         </p>
 
         <p className="text-sm text-base-content/60">{session.user.email}</p>
+
+        <Link href="/profile/update" className="btn btn-primary mt-5">
+          তথ্য আপডেট করুন
+        </Link>
       </div>
 
-      <ProfileForm name={session.user.name || ""} />
+      <ProfileForm />
     </main>
   );
 };

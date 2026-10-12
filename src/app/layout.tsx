@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import PriceTicker from "@/components/PriceTicker";
+import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "বাজার দর",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <Navbar />
         <PriceTicker />
         <main className="bg-blue-100 flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
