@@ -9,27 +9,33 @@ const AllProducts = async () => {
 
   const data = await response.json();
   const products: Product[] = data;
-  return (
-    <section id="সব-পণ্য" className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6">🛒 সব পণ্য</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+  return (
+    <section
+      id="সব-পণ্য"
+      className="mx-auto w-full max-w-7xl px-3 py-8 sm:px-4 sm:py-10"
+    >
+      <h2 className="mb-5 text-2xl font-bold sm:mb-6 sm:text-3xl">
+        🛒 সব পণ্য
+      </h2>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
         {products.map((product) => (
           <Link
             key={product.id}
             href={`/product/${product.slug}`}
-            className="card bg-base-100 border border-base-300 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+            className="card min-w-0 rounded-2xl border border-base-300 bg-base-100 shadow-sm transition-shadow hover:shadow-md"
           >
-            <div className="card-body">
-              <h3 className="card-title">
+            <div className="card-body min-w-0 gap-2 p-4 sm:p-5">
+              <h3 className="card-title break-words text-base sm:text-lg">
                 {product.categoryIcon} {product.nameBn}
               </h3>
 
-              <p className="text-sm text-base-content/60">
+              <p className="break-words text-sm text-base-content/60">
                 {product.categoryNameBn}
               </p>
 
-              <p className="text-xl font-bold">
+              <p className="break-words text-lg font-bold sm:text-xl">
                 {product.today} টাকা
                 <span className="text-sm font-normal"> / {product.unit}</span>
               </p>

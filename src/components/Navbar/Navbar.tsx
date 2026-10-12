@@ -20,7 +20,6 @@ const Navbar = async () => {
     headers: await headers(),
   });
 
-  console.log("User image:", session?.user?.image);
   const response = await fetch(
     "https://openapi.programming-hero.com/api/bazardor/categories",
     { next: { revalidate: 60 } },
@@ -30,22 +29,33 @@ const Navbar = async () => {
   const categories: Category[] = data;
 
   return (
-    <header className="bg-blue-100">
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <header className="w-full bg-blue-100">
+      <div className="mx-auto max-w-7xl px-3 py-3 sm:px-4 sm:py-4">
+        <div className="flex min-w-0 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <Image src="/logo-icon.png" alt="বাজার দর" width={50} height={50} />
+          <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <Image
+              src="/logo-icon.png"
+              alt="বাজার দর"
+              width={50}
+              height={50}
+              priority
+              className="h-10 w-10 shrink-0 object-contain sm:h-[50px] sm:w-[50px]"
+            />
 
-            <div>
-              <h1 className="text-2xl font-bold">বাজার দর</h1>
+            <div className="min-w-0">
+              <h1 className="text-lg font-bold leading-tight sm:text-2xl">
+                বাজার দর
+              </h1>
 
-              <p className="text-sm text-base-content/60">{today}</p>
+              <p className="mt-1 text-xs text-base-content/60 sm:text-sm">
+                {today}
+              </p>
             </div>
-          </div>
+          </Link>
 
           {/* Auth Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             {session?.user ? (
               <ProfileDropdown
                 name={session.user.name || "ব্যবহারকারী"}
@@ -54,11 +64,14 @@ const Navbar = async () => {
               />
             ) : (
               <>
-                <Link href="/signin" className="btn btn-ghost">
+                <Link href="/signin" className="btn btn-ghost btn-sm sm:btn-md">
                   সাইন ইন
                 </Link>
 
-                <Link href="/signup" className="btn btn-primary">
+                <Link
+                  href="/signup"
+                  className="btn btn-primary btn-sm sm:btn-md"
+                >
                   সাইন আপ
                 </Link>
               </>
@@ -67,12 +80,18 @@ const Navbar = async () => {
         </div>
       </div>
 
-      <div className="border border-gray-300"></div>
+      <div className="border-t border-gray-300" />
 
-      {/* Categories */}
-      <div className="max-w-7xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-center gap-4">
-          <Link href="/" className="rounded-lg px-3 py-2 hover:bg-base-200">
+      {/* Horizontally scrollable categories */}
+      <nav
+        aria-label="প্রধান ক্যাটাগরি"
+        className="mx-auto max-w-7xl px-2 sm:px-4"
+      >
+        <div className="flex items-center justify-start gap-1 overflow-x-auto overscroll-x-contain py-2 sm:justify-center sm:gap-2">
+          <Link
+            href="/"
+            className="shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm hover:bg-base-200 sm:text-base"
+          >
             🏠 হোম
           </Link>
 
@@ -80,14 +99,13 @@ const Navbar = async () => {
             <Link
               key={category.id}
               href={`/category/${category.slug}`}
-              className="px-3 py-2 rounded-lg hover:bg-base-200"
+              className="shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm hover:bg-base-200 sm:text-base"
             >
-              {category.icon}
-              {category.nameBn}
+              {category.icon} {category.nameBn}
             </Link>
           ))}
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

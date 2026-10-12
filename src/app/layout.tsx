@@ -19,8 +19,10 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <body className="min-h-screen flex flex-col">
         <Toaster position="top-right" />
-        <Navbar />
-        <PriceTicker />
+        <div className="sticky top-0 z-50">
+          <Navbar />
+          <PriceTicker />
+        </div>
         <main className="bg-blue-100 flex-1">{children}</main>
         <Footer />
       </body>

@@ -1,4 +1,5 @@
 import type { Product } from "@/types/product";
+import Link from "next/link";
 
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
@@ -18,17 +19,18 @@ const PriceTicker = async () => {
 
   return (
     <MarqueeText direction="right" duration={10}>
-      <div className="overflow-hidden text-black">
+      <div className="w-full overflow-hidden bg-white text-black">
         <div className="flex w-max">
           {products.map((product) => (
-            <div
+            <Link
               key={product.id}
-              className="border border-gray-100 px-3 py-1 text-sm"
+              href={`/product/${product.slug}`}
+              className="block whitespace-nowrap border border-gray-100 px-3 py-1 text-sm hover:bg-gray-100"
             >
               {product.categoryIcon} {product.nameBn} {product.today} টাকা/
               {product.unit} {product.change.dir === "up" ? "▲" : "▼"}{" "}
               {product.change.pct}%
-            </div>
+            </Link>
           ))}
         </div>
       </div>

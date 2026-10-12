@@ -85,7 +85,7 @@ const SignupPage = () => {
                 id="name"
                 name="name"
                 type="text"
-                placeholder="যেমন: রহিম উদ্দিন"
+                placeholder="তোমার পুরো নাম"
                 className="input input-bordered h-14 w-full rounded-xl text-base"
                 required
               />
