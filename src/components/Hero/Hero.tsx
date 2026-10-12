@@ -1,9 +1,37 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
+  const [dateTime, setDateTime] = useState("");
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      const formatted = new Intl.DateTimeFormat("bn-BD", {
+        timeZone: "Asia/Dhaka",
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      }).format(new Date());
+
+      setDateTime(formatted);
+    };
+
+    updateDateTime();
+
+    const interval = setInterval(updateDateTime, 60_000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="mx-auto w-full max-w-7xl px-3 py-6 sm:px-4 sm:py-10 md:py-12">
-      <div className="relative overflow-hidden rounded-3xl border border-blue-200/70 bg-gradient-to-br from-white via-blue-50 to-sky-100 p-5 shadow-lg shadow-blue-900/5 sm:p-8 md:rounded-[2rem] md:p-10 lg:p-12">
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-[#F5F8FC] to-blue-100/70 p-5 shadow-lg shadow-blue-900/5 sm:p-8 md:rounded-[2rem] md:p-10 lg:p-12">
         {/* Decorative background */}
         <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-200/30 blur-3xl sm:h-64 sm:w-64" />
 
@@ -12,9 +40,9 @@ const Hero = () => {
         <div className="relative grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
           {/* Left Content */}
           <div className="min-w-0">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3 py-1.5 text-xs font-medium text-blue-800 shadow-sm sm:text-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/90 px-3 py-1.5 text-xs font-medium text-blue-800 shadow-sm sm:text-sm">
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              মঙ্গলবার, ৬ অক্টোবর, ২০২৬
+              {dateTime || "তারিখ ও সময় লোড হচ্ছে..."}
             </div>
 
             <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl">
@@ -43,9 +71,9 @@ const Hero = () => {
             <div className="pointer-events-none absolute inset-6 rounded-[2rem] bg-blue-400/20 blur-2xl" />
 
             {/* Outer frame */}
-            <div className="relative rounded-[2rem] border border-white/90 bg-gradient-to-br from-white via-blue-50 to-blue-100 p-2 shadow-2xl shadow-blue-900/15 sm:rounded-[2.5rem] sm:p-3">
+            <div className="relative rounded-4xl border border-white bg-gradient-to-br from-white via-[#F5F8FC] to-blue-50 p-2 shadow-2xl shadow-blue-900/15 sm:rounded-[2.5rem] sm:p-3">
               {/* Inner frame */}
-              <div className="overflow-hidden rounded-[1.6rem] border border-blue-100/80 bg-white p-1.5 sm:rounded-[2rem] sm:p-2">
+              <div className="overflow-hidden rounded-[1.6rem] border border-slate-200/80 bg-white p-1.5 sm:rounded-[2rem] sm:p-2">
                 <div className="overflow-hidden rounded-[1.3rem] sm:rounded-[1.6rem]">
                   <Image
                     src="/bazar-hero.png"

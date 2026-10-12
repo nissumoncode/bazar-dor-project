@@ -31,13 +31,13 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="card rounded-2xl border border-base-300 bg-base-100 shadow-lg">
+    <div className="card rounded-2xl border border-slate-200 bg-white shadow-sm">
       <div className="card-body">
         <button
           type="button"
           onClick={handleSignOut}
           disabled={signOutLoading}
-          className="btn btn-outline btn-error"
+          className="btn border border-blue-700 bg-white text-blue-700 transition-colors duration-200 hover:border-blue-800 hover:bg-blue-50"
         >
           {signOutLoading ? "সাইন আউট হচ্ছে..." : "↩ সাইন আউট"}
         </button>

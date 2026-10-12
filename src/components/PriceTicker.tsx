@@ -18,14 +18,14 @@ const PriceTicker = async () => {
   const products: Product[] = data;
 
   return (
-    <MarqueeText direction="right" duration={10}>
-      <div className="w-full overflow-hidden bg-white text-black">
+    <MarqueeText direction="right" duration={15}>
+      <div className="w-full overflow-hidden border-b border-slate-200 bg-blue-50 text-slate-800">
         <div className="flex w-max">
           {products.map((product) => (
             <Link
               key={product.id}
               href={`/product/${product.slug}`}
-              className="block whitespace-nowrap border border-gray-100 px-3 py-1 text-sm hover:bg-gray-100"
+              className="block whitespace-nowrap border-r border-blue-100 px-3 py-1 text-sm transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"
             >
               {product.categoryIcon} {product.nameBn} {product.today} টাকা/
               {product.unit} {product.change.dir === "up" ? "▲" : "▼"}{" "}

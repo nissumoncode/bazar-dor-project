@@ -28,19 +28,17 @@ export default function CategoryProducts({ products }: CategoryProductsProps) {
   return (
     <>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-base-content/70">
-          মোট {products.length}টি পণ্য
-        </p>
+        <p className="text-sm text-slate-500">মোট {products.length}টি পণ্য</p>
 
         <label className="flex items-center gap-2">
-          <span className="text-sm font-medium">সাজান:</span>
+          <span className="text-sm font-medium text-slate-700">সাজান:</span>
 
           <select
             value={sortOption}
             onChange={(event) =>
               setSortOption(event.target.value as SortOption)
             }
-            className="select select-bordered select-sm"
+            className="select select-bordered select-sm border-slate-200 bg-white text-slate-800 focus:border-blue-500 focus:outline-none"
             aria-label="পণ্যের দাম অনুযায়ী সাজান"
           >
             <option value="default">ডিফল্ট</option>
@@ -51,7 +49,7 @@ export default function CategoryProducts({ products }: CategoryProductsProps) {
       </div>
 
       {sortedProducts.length === 0 ? (
-        <div className="rounded-2xl border border-base-300 p-8 text-center">
+        <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-700">
           <p className="mb-4">এই ক্যাটাগরিতে কোনো পণ্য পাওয়া যায়নি।</p>
           <Link href="/" className="btn btn-primary btn-sm">
             হোম পেজে ফিরে যান
@@ -63,18 +61,16 @@ export default function CategoryProducts({ products }: CategoryProductsProps) {
             <Link
               key={product.id}
               href={`/product/${product.slug}`}
-              className="card rounded-2xl border border-base-300 bg-base-100 shadow-sm transition-shadow hover:shadow-md"
+              className="card rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-sm transition-all duration-200 hover:border-blue-200 hover:shadow-md"
             >
               <div className="card-body">
-                <h2 className="card-title">
+                <h2 className="card-title text-slate-900">
                   {product.categoryIcon} {product.nameBn}
                 </h2>
 
-                <p className="text-sm text-base-content/60">
-                  প্রতি {product.unit}
-                </p>
+                <p className="text-sm text-slate-500">প্রতি {product.unit}</p>
 
-                <p className="text-xl font-bold">
+                <p className="text-xl font-bold text-slate-900">
                   {product.today.toLocaleString("bn-BD")} টাকা
                 </p>
 
@@ -84,7 +80,7 @@ export default function CategoryProducts({ products }: CategoryProductsProps) {
                       ? "text-success"
                       : product.change.dir === "down"
                         ? "text-error"
-                        : "text-base-content/60"
+                        : "text-slate-500"
                   }`}
                 >
                   {product.change.dir === "up"

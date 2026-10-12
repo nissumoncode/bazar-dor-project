@@ -53,7 +53,7 @@ const UpdateProfileForm = ({ name }: UpdateProfileFormProps) => {
   return (
     <div className="space-y-5">
       <div className="form-control gap-2">
-        <label htmlFor="name" className="label font-medium">
+        <label htmlFor="name" className="label font-medium text-slate-700">
           নাম
         </label>
 
@@ -63,7 +63,7 @@ const UpdateProfileForm = ({ name }: UpdateProfileFormProps) => {
           value={newName}
           onChange={(event) => setNewName(event.target.value)}
           placeholder="আপনার নাম লিখুন"
-          className="input input-bordered w-full"
+          className="input input-bordered w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
           autoComplete="name"
           required
           disabled={loading}
@@ -75,14 +75,16 @@ const UpdateProfileForm = ({ name }: UpdateProfileFormProps) => {
           type="button"
           onClick={handleUpdate}
           disabled={loading}
-          className="btn btn-primary flex-1"
+          className="btn flex-1 border-blue-700 bg-blue-700 text-white hover:border-blue-800 hover:bg-blue-800"
         >
           {loading ? "আপডেট হচ্ছে..." : "Update Information"}
         </button>
 
         <Link
           href="/profile"
-          className={`btn btn-outline ${loading ? "pointer-events-none opacity-50" : ""}`}
+          className={`btn border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 ${
+            loading ? "pointer-events-none opacity-50" : ""
+          }`}
           aria-disabled={loading}
         >
           বাতিল

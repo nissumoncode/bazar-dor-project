@@ -1,2 +1,25 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+:root {
+  --background: #f5f8fc;
+  --foreground: #0f172a;
+
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+
+  --surface: #ffffff;
+  --border: #e2e8f0;
+
+  --text-secondary: #64748b;
+  --success: #15803d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}

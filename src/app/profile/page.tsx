@@ -7,20 +7,23 @@ const ProfilePage = async () => {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="mb-2 text-3xl font-bold">আমার প্রোফাইল</h1>
+      <h1 className="mb-2 text-3xl font-bold text-slate-900">আমার প্রোফাইল</h1>
 
-      <p className="mb-6 text-base-content/60">
+      <p className="mb-6 text-slate-500">
         আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
       </p>
 
-      <div className="mb-6 rounded-2xl border border-base-300 bg-base-100 p-5">
-        <p className="text-lg font-semibold">
+      <div className="mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p className="text-lg font-semibold text-slate-900">
           {session.user.name || "নাম দেওয়া নেই"}
         </p>
 
-        <p className="text-sm text-base-content/60">{session.user.email}</p>
+        <p className="text-sm text-slate-500">{session.user.email}</p>
 
-        <Link href="/profile/update" className="btn btn-primary mt-5">
+        <Link
+          href="/profile/update"
+          className="btn mt-5 border-blue-700 bg-blue-700 text-white hover:border-blue-800 hover:bg-blue-800"
+        >
           তথ্য আপডেট করুন
         </Link>
       </div>

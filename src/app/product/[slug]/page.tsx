@@ -45,18 +45,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
     prices.reduce((total, market) => total + market.average, 0) / prices.length;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-10">
-      <div className="card bg-base-100 border border-base-300 rounded-2xl shadow-sm">
+    <section className="mx-auto max-w-7xl px-4 py-10">
+      <div className="card rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-sm">
         <div className="card-body">
-          <p className="text-sm text-base-content/60">
+          <p className="text-sm text-slate-500">
             {product.categoryIcon} {product.categoryNameBn}
           </p>
 
-          <h1 className="text-3xl md:text-4xl font-bold">{product.nameBn}</h1>
+          <h1 className="text-3xl font-bold md:text-4xl">{product.nameBn}</h1>
 
-          <p className="text-base-content/70">প্রতি {product.unit}</p>
+          <p className="text-slate-600">প্রতি {product.unit}</p>
 
-          <p className="text-3xl font-bold mt-2">{product.today} টাকা</p>
+          <p className="mt-2 text-3xl font-bold">{product.today} টাকা</p>
 
           <p
             className={`font-semibold ${
@@ -64,7 +64,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 ? "text-error"
                 : product.change.dir === "down"
                   ? "text-success"
-                  : "text-base-content/60"
+                  : "text-slate-500"
             }`}
           >
             {product.change.dir === "up"
@@ -75,19 +75,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {Math.abs(product.change.pct)}%
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-            <div className="rounded-xl bg-base-200 p-4">
-              <p className="text-sm text-base-content/60">সর্বনিম্ন দাম</p>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="rounded-xl border border-slate-200 bg-blue-50/70 p-4">
+              <p className="text-sm text-slate-500">সর্বনিম্ন দাম</p>
               <p className="text-xl font-bold">{minPrice} টাকা</p>
             </div>
 
-            <div className="rounded-xl bg-base-200 p-4">
-              <p className="text-sm text-base-content/60">সর্বোচ্চ দাম</p>
+            <div className="rounded-xl border border-slate-200 bg-blue-50/70 p-4">
+              <p className="text-sm text-slate-500">সর্বোচ্চ দাম</p>
               <p className="text-xl font-bold">{maxPrice} টাকা</p>
             </div>
 
-            <div className="rounded-xl bg-base-200 p-4">
-              <p className="text-sm text-base-content/60">গড় দাম</p>
+            <div className="rounded-xl border border-slate-200 bg-blue-50/70 p-4">
+              <p className="text-sm text-slate-500">গড় দাম</p>
               <p className="text-xl font-bold">
                 {averagePrice.toFixed(2)} টাকা
               </p>
@@ -96,11 +96,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mt-10 mb-5">বাজারভিত্তিক দাম</h2>
+      <h2 className="mb-5 mt-10 text-2xl font-bold text-slate-900">
+        বাজারভিত্তিক দাম
+      </h2>
 
-      <div className="overflow-x-auto rounded-xl border border-base-300">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
         <table className="table">
-          <thead>
+          <thead className="bg-blue-50 text-slate-700">
             <tr>
               <th>বাজার</th>
               <th>বিভাগ</th>

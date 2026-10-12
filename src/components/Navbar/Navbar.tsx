@@ -29,11 +29,11 @@ const Navbar = async () => {
   const categories: Category[] = data;
 
   return (
-    <header className="w-full bg-blue-100">
+    <header className="w-full border-b border-slate-200 bg-white text-slate-900">
       <div className="mx-auto max-w-7xl px-3 py-3 sm:px-4 sm:py-4">
         <div className="flex min-w-0 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
-          <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <Image
               src="/logo-icon.png"
               alt="বাজার দর"
@@ -44,15 +44,16 @@ const Navbar = async () => {
             />
 
             <div className="min-w-0">
-              <h1 className="text-lg font-bold leading-tight sm:text-2xl">
+              <Link
+                href="/"
+                className="text-lg font-bold leading-tight text-slate-900 sm:text-2xl"
+              >
                 বাজার দর
-              </h1>
+              </Link>
 
-              <p className="mt-1 text-xs text-base-content/60 sm:text-sm">
-                {today}
-              </p>
+              <p className="mt-1 text-xs text-slate-500 sm:text-sm">{today}</p>
             </div>
-          </Link>
+          </div>
 
           {/* Auth Buttons */}
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
@@ -80,9 +81,8 @@ const Navbar = async () => {
         </div>
       </div>
 
-      <div className="border-t border-gray-300" />
+      <div className="border-t border-slate-200" />
 
-      {/* Horizontally scrollable categories */}
       <nav
         aria-label="প্রধান ক্যাটাগরি"
         className="mx-auto max-w-7xl px-2 sm:px-4"
@@ -90,7 +90,7 @@ const Navbar = async () => {
         <div className="flex items-center justify-start gap-1 overflow-x-auto overscroll-x-contain py-2 sm:justify-center sm:gap-2">
           <Link
             href="/"
-            className="shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm hover:bg-base-200 sm:text-base"
+            className="shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm transition-colors duration-200 hover:bg-blue-50 hover:text-blue-700 sm:text-base"
           >
             🏠 হোম
           </Link>
@@ -99,7 +99,7 @@ const Navbar = async () => {
             <Link
               key={category.id}
               href={`/category/${category.slug}`}
-              className="shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm hover:bg-base-200 sm:text-base"
+              className="shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-sm transition-colors duration-200 hover:bg-blue-50 hover:text-blue-700 sm:text-base"
             >
               {category.icon} {category.nameBn}
             </Link>

@@ -52,7 +52,7 @@ const ProfileDropdown = ({ name, email, image }: ProfileDropdownProps) => {
       <button
         type="button"
         tabIndex={0}
-        className="btn btn-ghost flex items-center gap-2"
+        className="btn btn-ghost flex items-center gap-2 text-slate-800 hover:bg-blue-50 hover:text-blue-700"
       >
         {image ? (
           <Image
@@ -64,7 +64,7 @@ const ProfileDropdown = ({ name, email, image }: ProfileDropdownProps) => {
             unoptimized
           />
         ) : (
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-600 text-sm font-bold text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-700 text-sm font-bold text-white">
             {initials || "U"}
           </span>
         )}
@@ -75,17 +75,20 @@ const ProfileDropdown = ({ name, email, image }: ProfileDropdownProps) => {
 
       <ul
         tabIndex={-1}
-        className="menu dropdown-content z-50 mt-2 w-64 rounded-xl border border-base-300 bg-base-100 p-2 shadow-lg"
+        className="menu dropdown-content z-50 mt-2 w-64 rounded-xl border border-slate-200 bg-white p-2 text-slate-800 shadow-lg"
       >
         <li className="pointer-events-none">
           <div className="flex flex-col items-start gap-1">
-            <span className="font-semibold">{name}</span>
-            <span className="text-sm text-base-content/60">{email}</span>
+            <span className="font-semibold text-slate-900">{name}</span>
+            <span className="text-sm text-slate-500">{email}</span>
           </div>
         </li>
 
         <li>
-          <Link href="/profile">
+          <Link
+            href="/profile"
+            className="transition-colors duration-200 hover:bg-blue-50 hover:text-blue-700"
+          >
             <UserRound size={18} />
             আমার প্রোফাইল
           </Link>

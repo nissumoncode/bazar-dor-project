@@ -24,14 +24,14 @@ const AllProducts = async () => {
           <Link
             key={product.id}
             href={`/product/${product.slug}`}
-            className="card min-w-0 rounded-2xl border border-base-300 bg-base-100 shadow-sm transition-shadow hover:shadow-md"
+            className="card min-w-0 rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:border-blue-200 hover:shadow-md"
           >
             <div className="card-body min-w-0 gap-2 p-4 sm:p-5">
-              <h3 className="card-title break-words text-base sm:text-lg">
+              <h3 className="card-title break-words text-base text-slate-900 sm:text-lg">
                 {product.categoryIcon} {product.nameBn}
               </h3>
 
-              <p className="break-words text-sm text-base-content/60">
+              <p className="break-words text-sm text-slate-500">
                 {product.categoryNameBn}
               </p>
 
@@ -46,7 +46,7 @@ const AllProducts = async () => {
                     ? "text-error"
                     : product.change.dir === "down"
                       ? "text-success"
-                      : "text-base-content/60"
+                      : "text-slate-500"
                 }`}
               >
                 {product.change.dir === "up"

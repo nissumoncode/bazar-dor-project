@@ -16,26 +16,28 @@ const FallingProducts = async () => {
     .slice(0, 6);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6">▼ আজ দাম কমেছে</h2>
+    <section className="mx-auto max-w-7xl px-4 py-10">
+      <h2 className="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">
+        ▼ আজ দাম কমেছে
+      </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {fallingProducts.map((product) => (
           <Link
             key={product.id}
             href={`/product/${product.slug}`}
-            className="card bg-base-100 border border-base-300 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+            className="card rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-sm transition-all duration-200 hover:border-blue-200 hover:shadow-md"
           >
             <div className="card-body">
-              <h3 className="card-title">
+              <h3 className="card-title text-slate-900">
                 {product.categoryIcon} {product.nameBn}
               </h3>
 
-              <p className="text-sm text-base-content/60">
-                প্রতি {product.unit}
-              </p>
+              <p className="text-sm text-slate-500">প্রতি {product.unit}</p>
 
-              <p className="text-xl font-bold">{product.today} টাকা</p>
+              <p className="text-xl font-bold text-slate-900">
+                {product.today} টাকা
+              </p>
 
               <p className="text-sm font-semibold text-success">
                 ▼ {Math.abs(product.change.pct)}%
